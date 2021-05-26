@@ -13,35 +13,38 @@ app.get('/', (req, res) => {res.send('Hello world')});
   Servidor propriamente dito
 */
 
-const notes = [
-    {id: 0, title: "Vinícius Nonato Rodrigues", description : "Aluno da Unicamp feliz"},
-    {id: 1, title: "Carolina da Silva Sancho", description : "Aluna da Unicamp não tão feliz"}
+const transactions = [
+    {id: 0, value: "R$ 1000,00", date : "25/05/2021", description : "Salário Bosch", category : "income"},
+    {id: 1, value: "R$ 500,00", date : "26/05/2021", description : "Presente vô", category : "income"},
+    {id: 2, title: "R$ 50,00", date : "26/05/2021", description : "Game Steam", category : "expense"}
 ]
 
-const endpoint = "/notes";
+const endpoint = "/transactions";
 
 app.get(endpoint, (req, res) => {
-    res.send(notes.filter(Boolean));
+    res.send(transactions.filter(Boolean));
 });
 
 app.get(`${endpoint}/:id`, (req, res) => {
     const id = req.params.id;
-    const note = notes[id];
+    const transaction = transactions[id];
 
-    if (!note){
+    if (!transaction){
         res.send("{}");
     } else {
-        res.send(note);
+        res.send(transaction);
     }   
 });
 
 app.post(endpoint, (req, res) => {
-    const note = {
-        id : notes.length,
-        title : req.body["title"],
-        description : req.body["description"]
+    const transaction = {
+        id : transactions.length,
+        value : req.body["value"],
+        date : req.body["date"],
+        description : req.body["description"],
+        category : req.body["category"],
     };
-    notes.push(note);
+    transactions.push(transaction);
     res.send("1");
 
     // Notificar todos
@@ -50,13 +53,15 @@ app.post(endpoint, (req, res) => {
 
 app.put(`${endpoint}/:id`, (req, res) => {
     const id = parseInt(req.params.id);
-    const note = {
+    const transaction = {
         id : id,
-        title : req.body["title"],
-        description : req.body["description"]
+        value : req.body["value"],
+        date : req.body["date"],
+        description : req.body["description"],
+        category : req.body["category"],
     };
 
-    notes[id] = note;
+    transactions[id] = transaction;
     res.send("1");
 
     // Notificar todos
@@ -65,7 +70,7 @@ app.put(`${endpoint}/:id`, (req, res) => {
 
 app.delete(`${endpoint}/:id`, (req, res) => {
     const id = req.params.id;
-    delete notes[id];
+    delete transactions[id];
     res.send("1");
 
     // Notificar todos
