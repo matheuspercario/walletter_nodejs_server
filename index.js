@@ -91,4 +91,5 @@ function notify(){
     io.sockets.emit(INVALIDATE, 1);
 }
 
+// process.env.PORT - Porta Heroku
 server.listen(process.env.PORT || 3000);
