@@ -12,9 +12,9 @@ app.get('/', (req, res) => {res.send('Hello world')});
 */
 
 const transactions = [
-    {id: 0, value: "R$ 1000,00", date : "25/05/2021", description : "Salário Bosch", category : "income"},
-    {id: 1, value: "R$ 500,00", date : "26/05/2021", description : "Presente vô", category : "income"},
-    {id: 2, title: "R$ 50,00", date : "26/05/2021", description : "Game Steam", category : "expense"}
+    {id: 0, value: "R$ 1000,00", date : "25/05/2021", description : "Salário Estágio", category : "income"},
+    {id: 1, value: "R$ 500,00", date : "26/05/2021", description : "Presente aniversário", category : "income"},
+    {id: 2, value: "R$ 50,00", date : "26/05/2021", description : "Novo game steam", category : "expense"}
 ]
 
 const endpoint = "/transactions";
